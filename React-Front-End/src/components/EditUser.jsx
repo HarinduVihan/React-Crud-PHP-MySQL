@@ -7,7 +7,12 @@ export default function EditUser() {
 
   const { id } = useParams();
 
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({
+    id: "",
+    name: "",
+    email: "",
+    mobile: "",
+  });
 
   useEffect(() => {
     getUser();
