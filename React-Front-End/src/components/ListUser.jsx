@@ -18,6 +18,16 @@ export default function ListUser() {
       });
   }
 
+  const deleteUser = (id) => {
+    axios
+      .delete(
+        `http://localhost/projects/React%20Crud%20PHP%20MySQL/api/index.php/${id}`
+      )
+      .then(function (response) {
+        console.log(response.data);
+        getUsers();
+      });
+  };
   return (
     <div>
       <h1>List User</h1>
@@ -41,7 +51,7 @@ export default function ListUser() {
               <td>{user.mobile}</td>
               <td>
                 <Link to={`user/${user.id}/edit`}>Edit</Link>
-                <button>Delete</button>
+                <button onClick={() => deleteUser(user.id)}>Delete</button>
               </td>
             </tr>
           ))}

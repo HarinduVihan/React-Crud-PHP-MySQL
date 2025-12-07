@@ -75,6 +75,22 @@
                 $response = ['status' => 0, 'message' => 'Faild to create record.'];
             }
             break;
+
+        case "DELETE":
+            $sql = "DELETE FROM users WHERE id = :id";
+            $path = explode('/', $_SERVER['REQUEST_URI']);
+            //print_r($path);
+            if(isset($path[5]) && is_numeric($path[5])){
+                
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':id', $path[5]);
+            }
+            if($stmt->execute()){
+                $response = ['status' => 1, 'message' => 'Record deleted succeessfully.'];
+            }else{
+                $response = ['status' => 0, 'message' => 'Faild to delete record.'];
+            }
+            break;
     }
 
 ?>
