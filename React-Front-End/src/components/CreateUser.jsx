@@ -1,7 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateUser() {
+  const navigate = useNavigate();
+
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -13,11 +16,16 @@ export default function CreateUser() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post(
-      "http://localhost/projects/React%20Crud%20PHP%20MySQL/api/index.php",
-      { inputs }
-    ); //80 , 443  http://localhost:8888
-    console.log(inputs);
+    axios
+      .post(
+        "http://localhost/projects/React%20Crud%20PHP%20MySQL/api/index.php",
+        { inputs }
+      )
+      .then(function (response) {
+        console.log(inputs);
+        console.log(response.data);
+        navigate("/");
+      });
   };
 
   return (
