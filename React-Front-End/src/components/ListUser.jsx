@@ -6,10 +6,10 @@ export default function ListUser() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    getUser();
+    getUsers();
   }, []);
 
-  function getUser() {
+  function getUsers() {
     axios
       .get("http://localhost/projects/React%20Crud%20PHP%20MySQL/api/index.php")
       .then(function (response) {
